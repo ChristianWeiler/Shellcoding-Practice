@@ -99,8 +99,7 @@ CODE = (
     "   mov   r10d, 0xec0e4e8e          ;"  #   LoadLibraryA hash
     "   call   r15                      ;"  #   Call find_function
     "   mov   [rbp+0x10], rax           ;"  #   Save LoadLibraryA address for later usage
-    "   mov   r10d, 0x16b3fe72          ;"  #   CreateProcessA hash
-    
+
     " load_user32.dll:                   "
     "   xor   rcx, rcx                  ;"
     "   mov cx, 0x6c6c                  ;"
@@ -109,7 +108,7 @@ CODE = (
     "   push   rcx                      ;"
     "   mov   rcx, rsp                  ;"
     "   sub   rsp, 0x20                 ;"
-    "   call   qword ptr [rbp+0x10]     ;" # Call LoadLibraryA("ws2_32.dll")
+    "   call   qword ptr [rbp+0x10]     ;" # Call LoadLibraryA("user32.dll")
     "   add   rsp, 0x20                 ;"
     "   mov   RDX, RAX                  ;" # pass new base address to find_function
 
@@ -129,7 +128,7 @@ CODE = (
     "   mov rdx, rsp                    ;" # lpText = "Hello World!"
     "   mov r8, rdx                     ;" # lpCaption = "Hello World!"
     "   sub   rsp, 0x20                 ;"
-    "   call   qword ptr [rbp+0x18]     ;" # Call LoadLibraryA("ws2_32.dll")
+    "   call   qword ptr [rbp+0x18]     ;" # Call MessageBoxA
     "   add   rsp, 0x20                 ;"
 
     " call_terminateprocess:              "
